@@ -32,8 +32,9 @@ ext {
 publishing {
   publications {
     plugin(MavenPublication) {
-      from components.java
-      artifactId 'myfirstproject'
+      from components.web
+      groupId = 'net.velocitypartners'
+      artifactId 'gradle-web-quickstart'
     }
   }
   
