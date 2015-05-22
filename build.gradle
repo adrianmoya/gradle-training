@@ -1,0 +1,58 @@
+plugins {
+	id 'war'
+	id 'jetty'
+	id 'maven-publish'
+    id 'pl.allegro.tech.build.axion-release' version '1.2.4'
+}
+
+project.version = scmVersion.version
+
+repositories {
+    maven {
+        url "http://192.168.0.13:8081/artifactory/libs-release/"
+    }
+}
+
+dependencies {
+    compile group: 'commons-io', name: 'commons-io', version: '1.4'
+    compile group: 'log4j', name: 'log4j', version: '1.2.15', ext: 'jar'
+}
+
+httpPort = 8080
+stopPort = 9451
+stopKey = 'foo'
+
+
+ext {
+  artifactoryBaseUrl = 'http://192.168.0.13:8081/artifactory'
+  artifactorySnapshotRepoUrl = "$artifactoryBaseUrl/libs-snapshot-local"
+  artifactoryReleaseRepoUrl = "$artifactoryBaseUrl/libs-release-local"
+}
+
+publishing {
+  publications {
+    plugin(MavenPublication) {
+      from components.java
+      artifactId 'myfirstproject'
+    }
+  }
+  
+  repositories {
+    maven {
+      name 'remoteArtifactory'
+      url project.version.endsWith('-SNAPSHOT') ? artifactorySnapshotRepoUrl : artifactoryReleaseRepoUrl
+      credentials {
+        username = artifactoryUsername
+        password = artifactoryPassword
+      }
+    }
+  }
+  
+}
+
+scmVersion {
+    tag {
+        prefix = 'gradle-web-quickstart'
+    }
+}
+
