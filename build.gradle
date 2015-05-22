@@ -5,8 +5,6 @@ plugins {
     id 'pl.allegro.tech.build.axion-release' version '1.2.4'
 }
 
-project.version = scmVersion.version
-
 repositories {
     maven {
         url "http://192.168.0.13:8081/artifactory/libs-release/"
@@ -57,3 +55,4 @@ scmVersion {
     }
 }
 
+project.version = scmVersion.version
