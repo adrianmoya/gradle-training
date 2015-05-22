@@ -2,12 +2,12 @@ plugins {
 	id 'war'
 	id 'jetty'
 	id 'maven-publish'
-    id 'pl.allegro.tech.build.axion-release' version '1.2.4'
+        id 'pl.allegro.tech.build.axion-release' version '1.2.4'
 }
 
 repositories {
     maven {
-        url "http://192.168.0.13:8081/artifactory/libs-release/"
+        url "http://192.168.60.56:8081/artifactory/libs-release/"
     }
 }
 
@@ -22,7 +22,7 @@ stopKey = 'foo'
 
 
 ext {
-  artifactoryBaseUrl = 'http://192.168.0.13:8081/artifactory'
+  artifactoryBaseUrl = 'http://192.168.60.56:8081/artifactory'
   artifactorySnapshotRepoUrl = "$artifactoryBaseUrl/libs-snapshot-local"
   artifactoryReleaseRepoUrl = "$artifactoryBaseUrl/libs-release-local"
 }
